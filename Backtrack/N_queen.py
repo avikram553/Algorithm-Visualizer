@@ -18,7 +18,7 @@ class N_queen():
         self.win=pygame.display.set_mode((self.SIDE,self.SIDE))
         self.dtime=speed
         self.Q_SIDE=(3*self.block)//4;
-        self.queen = pygame.image.load('queen.png') 
+        self.queen = pygame.image.load('Backtrack\Images\queen.png') 
         self.queen=pygame.transform.scale(self.queen,(self.Q_SIDE,self.Q_SIDE))
         self.WHITE=(255,255,255);self.BLACK=(0,0,0);self.RED=(255,0,0)
         

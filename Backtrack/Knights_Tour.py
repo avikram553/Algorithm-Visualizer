@@ -14,7 +14,7 @@ class Knight():
         self.block=self.SIDE//self.n
         self.win=pygame.display.set_mode((self.SIDE,self.SIDE))
         self.K_SIDE=(self.block*3)//4
-        self.knight_img= pygame.image.load('knight2.png') 
+        self.knight_img= pygame.image.load('Backtrack\Images\knight2.png') 
         self.knight_img=pygame.transform.scale(self.knight_img,(self.K_SIDE,self.K_SIDE))
         self.WHITE=(255,255,255);self.BLACK=(0,0,0);self.RED=(255,0,0)
         pygame.display.set_caption("KNIGHT'S TOUR")

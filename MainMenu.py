@@ -1,8 +1,8 @@
 from  tkinter import *
 from tkinter import messagebox
 from SortingAlgorithm import *
-from Knights_Tour import *
-from N_queen import *
+from Backtrack.Knights_Tour import *
+from Backtrack.N_queen import *
 algotype=""
 class second:
     def __init__(self,root):
@@ -140,7 +140,10 @@ class front:
             self.backmenu()
 
     def run(self):
-        if self.algo == "Sorting Algorithm":
+        if self.algo == "Select Algorithm Type" or self.AlgoNameVar.get()=="Select Algorithm Type" :
+            messagebox.showerror("Incomplete Data!", "Please fill all the Fields to Start Visualization.")
+
+        elif self.algo == "Sorting Algorithm":
             self.temp1=self.NoOfElementsSlider.get()
             self.temp2=self.SpeedSlider.get()
             self.root.destroy()
