@@ -42,6 +42,7 @@ class N_queen():
                 continue
 
             self.solve(0)
+            pygame.time.delay(5000)
     def grid(self):
         for i in range(self.n):
             for j in range(self.n):

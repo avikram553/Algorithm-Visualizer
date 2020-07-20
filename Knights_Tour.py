@@ -3,47 +3,67 @@ from heapq import heappush, heappop # for priority queue
 import random
 
 #from ALGO.N_queen import *
-N=10
-0;dtime=300
-pygame.init()
-WIDTH=650;HEIGHT=650
-block=WIDTH//N
-win=pygame.display.set_mode((WIDTH,HEIGHT))
-Q_HEIGHT=(block*3)//4;Q_WIDTH=(block*3)//4
-knight_img= pygame.image.load('knight2.png') 
-knight_img=pygame.transform.scale(knight_img,(Q_HEIGHT,Q_WIDTH))
-WHITE=(255,255,255);BLACK=(0,0,0);RED=(255,0,0)
-pygame.display.set_caption("KNIGHT'S TOUR")
-x=block//2;y=block//2
-x1=(block-Q_HEIGHT)//2
-line_w=-int(-70//N)
-win.fill((120,0,120))
-k1=[1];k2=[];k3=[];k4=[]
 class Knight():
-    def __init__(self,v):
+    def __init__(self,v,speed):
         self.n=v
         self.cb=[[0 for x in range(v)] for y in range(v)]
         self.ans=[]
+        self.dtime=speed
+        pygame.init()
+        self.SIDE=650
+        self.block=self.SIDE//self.n
+        self.win=pygame.display.set_mode((self.SIDE,self.SIDE))
+        self.K_SIDE=(self.block*3)//4
+        self.knight_img= pygame.image.load('knight2.png') 
+        self.knight_img=pygame.transform.scale(self.knight_img,(self.K_SIDE,self.K_SIDE))
+        self.WHITE=(255,255,255);self.BLACK=(0,0,0);self.RED=(255,0,0)
+        pygame.display.set_caption("KNIGHT'S TOUR")
+        self.x=self.block//2;self.y=self.block//2
+        self.x1=(self.block-self.K_SIDE)//2
+        self.line_w=-int(-70//self.n)
+        self.grid()
+        run=True
+        while(run):
+            execute=False
+            pygame.time.delay(10)
+            for event in pygame.event.get():
+                if(event.type==pygame.QUIT):
+                    run=False
+            k=pygame.key.get_pressed()
+            if(k[pygame.K_SPACE]):
+                execute=True
+    
+            if(not execute):
+                self.grid()
+                pygame.display.update() 
+                continue
+
+            self.solve()
+            pygame.time.delay(50000)    
+            #break
+            run=False
+
     def grid(self):
         for i in range(self.n):
             for j in range(self.n):
+                if((i+j)%2==0):
+                    color=self.WHITE
+                else:
+                    color=self.BLACK
+                pygame.draw.rect(self.win,color,(i*self.block,j*self.block,self.block,self.block))
                 if([i,j] in self.ans):
                     color=(0,180,0)
-                elif((i+j)%2==0):
-                    color=WHITE
-                else:
-                    color=BLACK
-                pygame.draw.rect(win,color,(i*block,j*block,block,block))
+                    pygame.draw.rect(self.win,(120,255,0),(self.x1+i*self.block,self.x1+j*self.block,self.K_SIDE,self.K_SIDE))
     def show(self):
         self.grid()
         xx,yy=self.ans[0]
         for i in range(1,len(self.ans)):
             tx,ty=self.ans[i]
-            pygame.draw.line(win, (255,0,0), (x+xx*block,x+yy*block), (x+tx*block,x+ty*block),line_w)
+            pygame.draw.line(self.win, (255,0,0), (self.x+xx*self.block,self.x+yy*self.block), (self.x+tx*self.block,self.x+ty*self.block),self.line_w)
             xx,yy=self.ans[i]
-        win.blit(knight_img,(x1+xx*block,x1+yy*block))
+        self.win.blit(self.knight_img,(self.x1+xx*self.block,self.x1+yy*self.block))
         pygame.display.update()
-        pygame.time.delay(dtime)
+        pygame.time.delay(self.dtime)
         
     def solve(self):
         print("start")
@@ -77,26 +97,3 @@ class Knight():
         #print(self.ans)
         return True
     
-run=True
-kn=Knight(N)
-while(run):
-    win.fill((0,0,0))
-    execute=False
-    pygame.time.delay(10)
-    for event in pygame.event.get():
-        if(event.type==pygame.QUIT):
-            run=False
-    k=pygame.key.get_pressed()
-    if(k[pygame.K_SPACE]):
-        execute=True
-    
-    if(not execute):
-        kn.grid()
-        pygame.display.update() 
-        continue
-
-    kn.solve()
-    pygame.time.delay(50000)    
-    #break
-    run=False
-

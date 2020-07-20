@@ -1,6 +1,7 @@
 from  tkinter import *
 from tkinter import messagebox
 from SortingAlgorithm import *
+from Knights_Tour import *
 from N_queen import *
 algotype=""
 class second:
@@ -145,4 +146,7 @@ class front:
             self.root.destroy()
             Sorting(self.temp1, self.temp2,self.AlgoNameVar.get())
         elif self.algo =="Backtracking Algorithms":
-            temp=N_queen(self.NoOfElementsSlider.get(),1000//self.SpeedSlider.get())
+            if(self.AlgoNameVar.get()=="N- Queens"):
+                temp=N_queen(self.NoOfElementsSlider.get(),1000//self.SpeedSlider.get())
+            elif(self.AlgoNameVar.get()=="Knight's Tour"):
+                temp=Knight(self.NoOfElementsSlider.get(),1000//self.SpeedSlider.get())
