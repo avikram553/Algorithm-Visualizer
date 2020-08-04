@@ -1,7 +1,10 @@
 import pygame
 import time
 from threading import *
-import SortingAlgorithm
+import SUDOKU
+import N_Queen
+import Knight_Tour
+import Rat_In_The_Maze
 
 class Clock(Thread):
     def __init__(self,screen,CordinateX,CordinateY,font,*args):
@@ -17,8 +20,7 @@ class Clock(Thread):
 
     def run(self):
         try:
-            while(SortingAlgorithm.RunClock):
-
+            while(N_Queen.RunClock and Knight_Tour.RunClock and SUDOKU.RunClock and Rat_In_The_Maze.RunClock):
                 pygame.font.init()
 
                 myfont = pygame.font.SysFont('Comic Sans MS', self.font)
@@ -31,7 +33,7 @@ class Clock(Thread):
 
 
                 time.sleep(1)
-                if not SortingAlgorithm.RunClock:
+                if not N_Queen.RunClock or not Knight_Tour.RunClock or not  SUDOKU.RunClock or not Rat_In_The_Maze:
                     break
                 textsurface = myfont.render(self.printTime, False, (0, 0, 0))
                 self.screen.blit(textsurface, (self.CordinateX-50, self.CordinateY))
@@ -69,6 +71,7 @@ class Clock(Thread):
 
 
 
+
 class MainMenuButton(Thread):
     def __init__(self,screen,CordinateX,CordinateY,*args):
         Thread.__init__(self)
@@ -101,28 +104,8 @@ class MainMenuButton(Thread):
                     myfont = pygame.font.SysFont('Comic Sans MS', 20)
                     textsurface = myfont.render("Go Back to Main Menu", False, (255, 255, 255))
                     self.screen.blit(textsurface, (self.X+17, self.Y))
-
+                pygame.event.get()
                 pygame.display.update()
-        except:
-            pass
-
-
-
-class OperationsDone:
-    def __init__(self,NoOfOperations,screen,X,Y):
-        try:
-            self.NoOfOperations=NoOfOperations
-            self.screen=screen
-            self.X=X
-            self.Y=Y
-            pygame.font.init()
-
-            myfont = pygame.font.SysFont('Comic Sans MS', 20)
-            textsurface = myfont.render("Sorting Completed.", False, (255, 255, 255))
-            self.screen.blit(textsurface, (self.X , self.Y))
-            myfont = pygame.font.SysFont('Comic Sans MS', 20)
-            textsurface = myfont.render("Operations Performed: "+str(self.NoOfOperations), False, (255, 255, 255))
-            self.screen.blit(textsurface, (self.X, self.Y+40))
         except:
             pass
 
@@ -145,5 +128,45 @@ class ExitText(Thread):
                 myfont = pygame.font.SysFont('Comic Sans MS', 20)
                 textsurface = myfont.render("Press Esc to Exit.", False, (255, 255, 255))
                 self.screen.blit(textsurface, (self.X+17, self.Y))
+        except:
+            pass
+
+
+
+class OperationsDone:
+    def __init__(self,NoOfOperations,screen,X,Y,String):
+        try:
+            self.NoOfOperations=NoOfOperations
+            self.screen=screen
+            self.X=X
+            self.Y=Y
+            pygame.font.init()
+
+            myfont = pygame.font.SysFont('Comic Sans MS', 20)
+            textsurface = myfont.render(String, False, (255, 255, 255))
+            self.screen.blit(textsurface, (self.X + 50, self.Y))
+            myfont = pygame.font.SysFont('Comic Sans MS', 20)
+            textsurface = myfont.render("Operations Performed: "+str(self.NoOfOperations), False, (255, 255, 255))
+            self.screen.blit(textsurface, (self.X, self.Y+40))
+        except:
+            pass
+
+
+class OperationsDoneKnight:
+    def __init__(self,NoOfOperations,screen,X,Y,String):
+        try:
+            self.NoOfOperations=NoOfOperations
+            self.screen=screen
+            self.X=X
+            self.Y=Y
+
+            pygame.font.init()
+
+            myfont = pygame.font.SysFont('Comic Sans MS', 20)
+            textsurface = myfont.render(String, False, (255, 255, 255))
+            self.screen.blit(textsurface, (self.X+10, self.Y))
+            myfont = pygame.font.SysFont('Comic Sans MS', 20)
+            textsurface = myfont.render("Operations Performed: "+str(self.NoOfOperations), False, (255, 255, 255))
+            self.screen.blit(textsurface, (self.X, self.Y+40))
         except:
             pass
