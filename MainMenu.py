@@ -6,6 +6,8 @@ import N_Queen
 from Knight_Tour import *
 from SUDOKU import *
 from Rat_In_The_Maze import *
+from sys import platform
+
 
 class Window:
     def __init__(self,root):
@@ -13,7 +15,12 @@ class Window:
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-        self.root.iconbitmap("Images/hnet.com-image.ico")
+        if platform == "linux" or platform == "linux2":
+            self.root.iconbitmap("@Images/hnet.com-image.xbm")
+        elif platform == "win32":
+            self.root.iconbitmap("Images/hnet.com-image.ico")
+    # Windows...
+        
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)
@@ -80,7 +87,11 @@ class Window:
             self.root.geometry("725x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("Images/hnet.com-image.ico")
+            if platform == "linux" or platform == "linux2":
+                self.root.iconbitmap("@Images/hnet.com-image.xbm")
+            elif platform == "win32":
+                self.root.iconbitmap("Images/hnet.com-image.ico")
+            #self.root.iconbitmap("Images/hnet.com-image.ico")
 
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
@@ -127,7 +138,11 @@ class Window:
             self.root.geometry("750x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("Images/hnet.com-image.ico")
+            #self.root.iconbitmap("Images/hnet.com-image.ico")
+            if platform == "linux" or platform == "linux2":
+                self.root.iconbitmap("@Images/hnet.com-image.xbm")
+            elif platform == "win32":
+                self.root.iconbitmap("Images/hnet.com-image.ico")
 
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
