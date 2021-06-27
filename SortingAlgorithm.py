@@ -3,7 +3,7 @@ import random
 import time
 import math
 from ExtraElements import *
-from test import *
+#from test import *
 from threading import *
 from tkinter import *
 import StartProcess
