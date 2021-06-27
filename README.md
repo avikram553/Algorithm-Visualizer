@@ -47,6 +47,19 @@
 * [*__Pillow PIL Library__*](https://pillow.readthedocs.io/en/stable/installation.html)
 
 ## Steps to run:
+
+### Using Docker:
+```
+Install Docker
+```
+
+```
+docker run -ti --rm \
+       -e DISPLAY=$DISPLAY \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       avikram553/algoviz
+```
+
 ```
 Download or clone all the files
 ```
