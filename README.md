@@ -60,6 +60,7 @@ docker run -ti --rm \
        avikram553/algoviz
 ```
 
+### Naive Approach
 ```
 Download or clone all the files
 ```
